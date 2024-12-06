@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Registration Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        body {
+            background-color: rgb(176, 226, 38);
+        }
+        .input-group {
+            position: relative;
+        }
+
+        .eye-icon {
+            color: black;
+            font-size: 1.25em;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .is-valid {
+            border-color: #28a745;
+        }
+        .is-invalid {
+            border-color: #dc3545;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center mb-4">Registration Form</h2>
+    
+    <form id="registrationForm" class="row g-3">
+        <div class="col-12 mt-4">
+            <h5>Search</h5>
+            <input type="text" class="form-control mt-2" id="searchInput" placeholder="Enter search value">
+            <button class="btn btn-primary mt-2" id="searchButton">Search</button>
+            <div id="searchResults" class="mt-4"></div>
+        </div>
+        <div class="col-12">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            <div class="error-message" id="nameError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your valid Email" required>
+            <div class="error-message" id="emailError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="text" class="form-control" id="contact" maxlength="10" placeholder="Enter your contact number" required>
+            <div class="error-message" id="contactError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="dob" class="form-label">DOB</label>
+            <input type="date" class="form-control" id="dob" required>
+            <div class="error-message" id="dobError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="gender" class="form-label">Gender</label>
+            <select class="form-select" id="gender" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+            </select>
+            <div class="error-message" id="genderError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="education" class="form-label">Education</label>
+            <select class="form-select" id="education" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="BE">BE</option>
+                <option value="ME">ME</option>
+                <option value="MCA">MCA</option>
+                <option value="BSC">BSc</option>
+                <option value="MSC">MSc</option>
+                <option value="MBA">MBA</option>
+                <option value="BA">BA</option>
+                <option value="MA">MA</option>
+                <option value="PHD">PHD</option>
+            </select>
+            <div class="error-message" id="educationError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="occupation" class="form-label">Occupation (Optional)</label>
+            <input type="text" class="form-control" id="occupation" placeholder="Enter your occupation">
+            <div class="error-message" id="occupationError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter your username (Username should be unique)" required>
+            <div class="error-message" id="usernameError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                        <i class="eye-icon fas fa-eye"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="error-message" id="passwordError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="pan" class="form-label">PAN</label>
+            <input type="text" class="form-control" id="pan" placeholder="Enter your PAN Card Number" required>
+            <div class="error-message" id="panError"></div>
+        </div>
+        
+        <div class="col-12">
+            <label for="profilePic" class="form-label">Profile Picture</label>
+            <input type="file" class="form-control" id="profilePic" accept=".png,.jpeg" required>
+            <div class="error-message" id="profilePicError"></div>
+        </div>
+        
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="terms" required>
+                <label class="form-check-label" for="terms">
+                    Agree to terms and conditions
+                </label>
+            </div>
+            <div class="error-message" id="termsError"></div>
+        </div>
+        
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('registrationForm');
+    const searchButton = document.getElementById('searchButton');
+    const searchResults = document.getElementById('searchResults');
+    let profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+    let imageBase64; 
+
+    const validateField = (field, pattern, errorMessage, errorElement) => {
+        if (!pattern.test(field.value)) {
+            field.classList.remove('is-valid');
+            field.classList.add('is-invalid');
+            errorElement.textContent = errorMessage;
+        } else {
+            field.classList.remove('is-invalid');
+            field.classList.add('is-valid');
+            errorElement.textContent = '';
+        }
+    };
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.querySelector('.eye-icon').classList.toggle('fa-eye');
+        togglePassword.querySelector('.eye-icon').classList.toggle('fa-eye-slash');
+    });
+
+    document.getElementById('name').addEventListener('input', function() {
+        const namePattern = /^[A-Z][a-z]*(?: [A-Z][a-z]*)*$/;
+        this.value = this.value.replace(/\b\w/g, char => char.toUpperCase());
+        validateField(this, namePattern, "Each word must start with a capital letter.", document.getElementById('nameError'));
+    });
+
+    document.getElementById('email').addEventListener('input', function() {
+        const emailPattern = /^[a-z]+@[a-z]+\.(com|in|org)$/;
+        this.value = this.value.toLowerCase();
+        validateField(this, emailPattern, "Email must be in lowercase and end with .com, .in, or .org", document.getElementById('emailError'));
+    });
+
+    document.getElementById('contact').addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        const contactPattern = /^[0-9]{10}$/;
+        validateField(this, contactPattern, "Contact number must be 10 digits.", document.getElementById('contactError'));
+    });
+
+    document.getElementById('dob').addEventListener('input', function() {
+        const dobPattern = /^\d{4}-\d{2}-\d{2}$/;
+        validateField(this, dobPattern, "Invalid date format. Use YYYY-MM-DD.", document.getElementById('dobError'));
+    });
+
+    document.getElementById('gender').addEventListener('change', function() {
+        const genderPattern = /^(male|female|others)$/;
+        validateField(this, genderPattern, "Please select a gender.", document.getElementById('genderError'));
+    });
+
+    document.getElementById('education').addEventListener('change', function() {
+        validateField(this, /.+/, "Please select your education.", document.getElementById('educationError'));
+    });
+
+    document.getElementById('occupation').addEventListener('input', function() {
+        this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+    });
+
+    document.getElementById('username').addEventListener('input', function() {
+        const usernamePattern = /^[a-z0-9]{5,}$/;
+        validateField(this, usernamePattern, "Username must be at least 5 characters long and contain only lowercase letters and numbers.", document.getElementById('usernameError'));
+    });
+
+    document.getElementById('password').addEventListener('input', function() {
+        const passwordPattern = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+        validateField(this, passwordPattern, "Password must be at least 8 characters long and include an uppercase letter, a number, and a special character.", document.getElementById('passwordError'));
+    });
+
+    document.getElementById('pan').addEventListener('input', function() {
+        const panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+        validateField(this, panPattern, "Invalid PAN format.", document.getElementById('panError'));
+    });
+
+    document.getElementById('profilePic').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imageBase64 = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const profilePic = document.getElementById('profilePic').files[0];
+
+        if (!profilePic) return;
+
+        const newProfile = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            contact: document.getElementById('contact').value,
+            dob: document.getElementById('dob').value,
+            gender: document.getElementById('gender').value,
+            education: document.getElementById('education').value,
+            occupation: document.getElementById('occupation').value,
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value,
+            pan: document.getElementById('pan').value,
+            profilePic: {
+                name: profilePic.name,
+                size: profilePic.size,
+                type: profilePic.type,
+                base64: imageBase64 
+            }
+        };
+
+        profiles.push(newProfile);
+        localStorage.setItem('profiles', JSON.stringify(profiles));
+        alert('Profile saved successfully!');
+        form.reset();
+    });
+
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const searchInput = document.getElementById('searchInput').value;
+
+        const filteredProfiles = profiles.filter(profile => {
+            const dob = new Date(profile.dob);
+            const age = Math.floor((new Date() - dob) / (1000 * 60 * 60 * 24 * 365));
+            return profile.name.toLowerCase().includes(searchInput.toLowerCase()) || age <= parseInt(searchInput, 10) || profile.profilePic.size / 1024 <= parseInt(searchInput, 10);
+        });
+
+        displaySearchResults(filteredProfiles);
+    });
+
+    function displaySearchResults(profiles) {
+        searchResults.innerHTML = '';
+        if (profiles.length === 0) {
+            searchResults.innerHTML = '<p>No profiles found.</p>';
+            return;
+        }
+        profiles.forEach(profile => {
+            const profileDiv = document.createElement('div');
+            profileDiv.className = 'border p-3 mb-2 rounded';
+            profileDiv.innerHTML = `
+                <h5>${profile.name}</h5>
+                <p>Email: ${profile.email}</p>
+                <p>Contact: ${profile.contact}</p>
+                <p>DOB: ${profile.dob}</p>
+                <p>Gender: ${profile.gender}</p>
+                <p>Education: ${profile.education}</p>
+                <p>Occupation: ${profile.occupation}</p>
+                <p>Username: ${profile.username}</p>
+                <img src="${profile.profilePic.base64}" alt="${profile.name}'s profile picture" class="img-fluid mt-2" style="max-width: 100%; height: auto;">
+            `;
+            searchResults.appendChild(profileDiv);
+        });
+    }
+</script>
+</body>
+</html>
